@@ -6,9 +6,11 @@
     <groupId>groupId</groupId>
     <artifactId>reg-conferences</artifactId>
     <version>1.0-SNAPSHOT</version>
+
+    <!-- Прямое указание maven что необходимо собирать в war архив -->
     <packaging>war</packaging>
 
-    <!-- Полагины которые собирают проект в war архив -->
+    <!-- Плагины которые собирают проект в war архив -->
     <build>
         <plugins>
             <plugin>
