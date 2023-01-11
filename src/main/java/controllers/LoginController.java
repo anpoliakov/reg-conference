@@ -24,6 +24,14 @@ public class LoginController extends AbstractController{
             return;
         }
 
+        login = login.trim();
+        password = password.trim();
+
+        if(login.equals(Constants.EMPTY) || password.equals(Constants.EMPTY)){
+            jumpError(request,response,Constants.LOGIN_JSP,Constants.MESS_EMPTY);
+            return;
+        }
+
     }
 
     @Override
