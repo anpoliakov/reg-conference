@@ -1,4 +1,5 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> <!-- Набор JSP функций (базовый - core, ещё есть function) -->
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> <!-- удобная библиотека различных функций -->
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="constants.Constants"%>
 <html>
@@ -10,6 +11,7 @@
     <c:if test="${not empty message}">
         ${message}
     </c:if>
+
     <h2>Login form</h2>
     <form method="post" action='<c:url value="/login"/>'>
         <input type="text" name="<%= Constants.LOGIN %>" placeholder="Login">

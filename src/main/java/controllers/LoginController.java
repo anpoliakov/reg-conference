@@ -1,6 +1,8 @@
 package controllers;
 
 import constants.Constants;
+import model.impl.UserImpl;
+import model.interfaces.IUserDAO;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -32,6 +34,8 @@ public class LoginController extends AbstractController{
             return;
         }
 
+        IUserDAO userDAO = new UserImpl();
+        //TODO: запрос к бд на поиск пользователя (пока вносим ручками)
     }
 
     @Override
