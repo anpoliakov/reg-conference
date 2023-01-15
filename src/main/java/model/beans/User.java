@@ -15,6 +15,12 @@ public class User {
         this.lastName = lastName;
     }
 
+    //используется для уточнения "есть ли user в data base"
+    public User(int id, String login) {
+        this.id = id;
+        this.login = login;
+    }
+
     public int getId() {
         return id;
     }
