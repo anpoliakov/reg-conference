@@ -1,6 +1,7 @@
 package controllers;
 
 import constants.Constants;
+import model.beans.User;
 import model.impl.UserImpl;
 import model.interfaces.IUserDAO;
 
@@ -8,7 +9,9 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.SQLException;
 
 @WebServlet("/login")
 public class LoginController extends AbstractController{
@@ -35,7 +38,22 @@ public class LoginController extends AbstractController{
         }
 
         IUserDAO userDAO = new UserImpl();
-        //TODO: запрос к бд на поиск пользователя (пока вносим ручками)
+        try {
+            User user = userDAO.getUser(login,password);
+            if(user != null){
+                HttpSession session = request.getSession();
+                session.setAttribute(Constants.USER, user);
+                jump(request,response,Constants.INDEX_JSP);
+            }else{
+                jumpError(request,response,Constants.LOGIN_JSP,Constants.USER_NOT_FOUND);
+            }
+        } catch (SQLException e) {
+            //что бы в любом случае перепрыгнули и вывели какое-либо сообщение
+            jumpError(request, response, Constants.LOGIN_JSP, e.getMessage());
+            e.printStackTrace();
+        }
+
+        return;
     }
 
     @Override
