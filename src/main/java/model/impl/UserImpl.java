@@ -11,7 +11,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UserImpl implements IUserDAO {
-
     public User getUser(String login, String password) throws SQLException {
         Connection conn = null;
         PreparedStatement pst = null;
@@ -31,5 +30,47 @@ public class UserImpl implements IUserDAO {
         }
 
         return user;
+    }
+
+    public boolean addUser(User user, String password) throws SQLException {
+        Connection conn = null;
+        PreparedStatement pst = null;
+        boolean result = false;
+
+        conn = ConnectionManager.createConnection();
+        pst = conn.prepareStatement(SQLConstants.INSERT_USER);
+        pst.setString(1, user.getLogin());
+        pst.setString(2, user.getMail());
+        pst.setString(3, password);
+        pst.setString(4, user.getFirstName());
+        pst.setString(5, user.getLastName());
+
+        synchronized (UserImpl.class){
+            if(!isFoundLogin(user.getLogin())){
+                pst.executeUpdate();
+                result = true;
+            }
+        }
+
+        return result;
+    }
+
+    private boolean isFoundLogin(String login) throws SQLException {
+        Connection cn = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        boolean result = false;
+
+        try {
+            cn = ConnectionManager.createConnection();
+            pst = cn.prepareStatement(SQLConstants.FOUND_USER);
+            pst.setString(1, login);
+            rs = pst.executeQuery();
+            result = rs.next();
+        } finally {
+            ConnectionManager.closeResultSet(rs);
+            ConnectionManager.closeStatement(pst);
+        }
+        return result;
     }
 }
