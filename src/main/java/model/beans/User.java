@@ -21,6 +21,13 @@ public class User {
         this.login = login;
     }
 
+    public User(String login, String mail, String firstName, String lastName) {
+        this.login = login;
+        this.mail = mail;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
     public int getId() {
         return id;
     }
