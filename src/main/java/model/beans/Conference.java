@@ -19,6 +19,13 @@ public class Conference {
         this.events = events;
     }
 
+    public Conference(int id, String name, String place, Date date) {
+        this.id = id;
+        this.name = name;
+        this.place = place;
+        this.date = date;
+    }
+
     public int getId() {
         return id;
     }
