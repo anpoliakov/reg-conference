@@ -26,4 +26,8 @@ public final class Constants {
     public static final String FIRST_NAME = "firstName";
     public static final String LAST_NAME = "lastName";
     public static final String MAIL = "mail";
+
+    public static final String SECTION = "section";
+    public static final String TODAY_SECT = "today";
+    public static final String CONF_LIST = "conferences";
 }
