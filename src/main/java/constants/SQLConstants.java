@@ -9,10 +9,11 @@ public class SQLConstants {
 
     public static final String SELECT_CONF =
             "select * from conferences ";
+    public static final String WHERE_ALL = "";
     public static final String WHERE_TODAY =
-            "where date=CURRENT_DATE()";
+            "where date=NOW()";
     public static final String WHERE_TOMORROW =
-            "where date=CURRENT_DATE(1)";
+            "where date=CURRENT_DATE(1)"; //пример mySQL запроса
     public static final String WHERE_SOON =
             "where date>CURRENT_DATE(1)";
     public static final String WHERE_FINISHED =

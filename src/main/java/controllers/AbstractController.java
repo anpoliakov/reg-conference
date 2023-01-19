@@ -10,6 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class AbstractController extends HttpServlet{
+    public AbstractController() {
+        super();
+    }
+
     protected void jump(HttpServletRequest request, HttpServletResponse response, String url) throws ServletException, IOException {
         RequestDispatcher rd = request.getRequestDispatcher(url);
         rd.forward(request,response);
