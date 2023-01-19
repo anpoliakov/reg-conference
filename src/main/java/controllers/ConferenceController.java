@@ -17,6 +17,10 @@ import java.util.List;
 
 @WebServlet ("/conf")
 public class ConferenceController extends AbstractController{
+    public ConferenceController() {
+        super();
+    }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String param = request.getParameter(Constants.SECTION);
@@ -26,7 +30,7 @@ public class ConferenceController extends AbstractController{
         }
 
         try {
-            Enum<?> section = EnumManager.getKindConf(param);
+            Enum <?> section = EnumManager.getKindConf(param);
             IConferenceDAO confDAO = new ConferenceImpl();
             List<Conference> conferences = confDAO.getConferences(section);
             HttpSession session = request.getSession();
@@ -41,6 +45,6 @@ public class ConferenceController extends AbstractController{
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doPost(request, response);
+        doGet(request, response);
     }
 }
