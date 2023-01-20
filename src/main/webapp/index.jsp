@@ -45,7 +45,9 @@
         <c:forEach var="conf" items="${conferences}">
           <tr>
             <td>${conf.id}</td>
-            <td>${conf.name}</td>
+            <td>
+              <a href="JavaScript:getConf('${conf.id}')">${conf.name}</a>
+            </td>
             <td>${conf.place}</td>
             <td>${conf.date}</td>
           </tr>

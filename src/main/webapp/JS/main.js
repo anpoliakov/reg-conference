@@ -14,3 +14,20 @@ function sendSect(section) {
 
     form.submit();
 }
+
+function getConf(id){
+    var input = document.createElement("input");
+    input.type = "hidden";
+    input.name = "idConf";
+    input.value = id;
+
+    var form = document.createElement("form");
+    form.action = "/reg-conferences/fillConf";
+    form.method = "post";
+    form.style = "none";
+
+    form.appendChild(input);
+    document.body.append(form);
+
+    form.submit();
+}

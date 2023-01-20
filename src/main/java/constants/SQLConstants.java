@@ -18,8 +18,13 @@ public class SQLConstants {
             "where date>CURRENT_DATE(1)";
     public static final String WHERE_FINISHED =
             "where date<CURRENT_DATE()";
+    public static final String SELECT_EVENTS =
+            "select events.id,events.name,events.time from events "
+                    + "join conferences on events.idConf=conferences.id "
+                    + "where events.idConf=?";
 
     public static final String NAME_LABEL = "name";
     public static final String PLACE_LABEL = "place";
     public static final String DATE_LABEl = "date";
+    public static final String TIME_LABEL = "time";
 }

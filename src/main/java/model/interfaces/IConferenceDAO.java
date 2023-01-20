@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface IConferenceDAO {
     List<Conference> getConferences(Enum <?> select) throws SQLException;
-    void fillConferenceEvents(List<Conference> conferences, String idConf);
+    int fillConferenceEvents(List<Conference> conferences, String idConf) throws SQLException;
 }
