@@ -8,7 +8,6 @@ public class Event {
     private Time time;
 
     public Event(int id, String name, Time time) {
-        super();
         this.id = id;
         this.name = name;
         this.time = time;
