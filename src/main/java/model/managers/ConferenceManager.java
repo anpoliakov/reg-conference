@@ -5,7 +5,7 @@ import model.beans.Conference;
 import java.util.List;
 
 public class ConferenceManager {
-    public static int getConfId(List<Conference> conferences, String idConf) {
+    public static int getIndex(List<Conference> conferences, String idConf) {
         int id;
         try {
             id = Integer.parseInt(idConf);

@@ -32,7 +32,7 @@ public class UserImpl implements IUserDAO {
         return user;
     }
 
-    public boolean addUser(User user, String password) throws SQLException {
+    public boolean isAddUser(User user, String password) throws SQLException {
         Connection conn = null;
         PreparedStatement pst = null;
         boolean result = false;
@@ -63,7 +63,7 @@ public class UserImpl implements IUserDAO {
 
         try {
             cn = ConnectionManager.createConnection();
-            pst = cn.prepareStatement(SQLConstants.FOUND_USER);
+            pst = cn.prepareStatement(SQLConstants.FOUND_LOGIN);
             pst.setString(1, login);
             rs = pst.executeQuery();
             result = rs.next();

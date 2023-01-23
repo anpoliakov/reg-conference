@@ -1,12 +1,12 @@
 package model.enums;
 
 public class EnumManager {
-    public static SelectionKindConf getKindConf(String param) {
+    public static SectionKind getKindConf(String param) {
         try {
-            SelectionKindConf kind = SelectionKindConf.valueOf(param.toUpperCase());
+            SectionKind kind = SectionKind.valueOf(param.toUpperCase());
             return kind;
         } catch (IllegalArgumentException e) {
-            return SelectionKindConf.ALL;
+            return SectionKind.ALL;
         }
     }
 }
