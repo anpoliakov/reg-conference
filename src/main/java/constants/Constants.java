@@ -4,6 +4,7 @@ public final class Constants {
     public static final String LOGIN_JSP = "/login.jsp";
     public static final String INDEX_JSP = "/index.jsp";
     public static final String REGIST_JSP = "/regist.jsp";
+    public static final String HOME_JSP = "/home.jsp";
     public static final String CONF_JSP = "/conf.jsp";
     public static final String CONF_CONTR = "/conf";
     public static final String INDEX_CONF = "indexConf";
@@ -36,4 +37,7 @@ public final class Constants {
     public static final String TODAY_SECT = "today";
     public static final String CONF_LIST = "conferences";
     public static final String CONF_INDEX = "indexConf";
+
+    public static final String DATE_PATTERN = "yyyy-MM-dd";
+    public static final String TIME_PATTERN = "HH:mm";
 }
