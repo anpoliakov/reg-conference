@@ -7,7 +7,6 @@ import model.interfaces.IUserDAO;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -45,7 +44,7 @@ public class RegistrationController extends AbstractController {
         User user = new User(login,mail,firstname,lastname);
 
         try{
-            if(userDAO.addUser(user,password)){
+            if(userDAO.isAddUser(user,password)){
                 HttpSession session = request.getSession();
                 session.setAttribute(Constants.USER, user);
                 jump(request,response,Constants.INDEX_JSP);
