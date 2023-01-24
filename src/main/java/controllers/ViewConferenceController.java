@@ -18,7 +18,7 @@ import java.util.List;
 @WebServlet("/viewConf")
 public class ViewConferenceController extends AbstractController{
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws  ServletException, IOException {
         String idConf = request.getParameter(Constants.ID_CONF);
 
         if(idConf == null) {
@@ -39,7 +39,7 @@ public class ViewConferenceController extends AbstractController{
             }
 
 
-        } catch (SQLException e) {
+        } catch (SQLException | ParseException e) {
             jumpError(request, response, Constants.INDEX_JSP, e.getMessage());
         }
         return;
