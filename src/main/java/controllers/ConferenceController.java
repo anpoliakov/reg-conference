@@ -2,7 +2,9 @@ package controllers;
 
 import constants.Constants;
 import model.beans.Conference;
+import model.beans.User;
 import model.enums.EnumManager;
+import model.enums.SectionKind;
 import model.impl.ConferenceImpl;
 import model.interfaces.IConferenceDAO;
 
@@ -25,17 +27,29 @@ public class ConferenceController extends AbstractController{
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String param = request.getParameter(Constants.SECTION);
 
+        if(param == null) {
+            param = (String) request.getAttribute(Constants.SECTION);
+        }
+
         if (param == null) {
             param = Constants.TODAY_SECT;
         }
 
         try {
-            Enum <?> section = EnumManager.getKindConf(param);
             IConferenceDAO confDAO = new ConferenceImpl();
-            List<Conference> conferences = confDAO.getConferences(section);
+            Enum <?> section = EnumManager.getKindConf(param);
+
             HttpSession session = request.getSession();
+            User user = (User) session.getAttribute(Constants.USER);
+            List<Conference> conferences = confDAO.getConferences(section, user);
             session.setAttribute(Constants.CONF_LIST, conferences);
-            jump(request, response, Constants.INDEX_JSP);
+
+            if (section == SectionKind.CONF_BY_USER) {
+                response.sendRedirect("/reg-conferences" + Constants.HOME_JSP);
+                //jump(request, response, Constants.HOME_JSP);
+            }else {
+                jump(request, response, Constants.INDEX_JSP);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
             jumpError(request, response, Constants.INDEX_JSP, e.getMessage());
