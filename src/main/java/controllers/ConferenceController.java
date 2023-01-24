@@ -3,7 +3,7 @@ package controllers;
 import constants.Constants;
 import model.beans.Conference;
 import model.beans.User;
-import model.enums.EnumManager;
+import model.enums.SectionManager;
 import model.enums.SectionKind;
 import model.impl.ConferenceImpl;
 import model.interfaces.IConferenceDAO;
@@ -37,7 +37,7 @@ public class ConferenceController extends AbstractController{
 
         try {
             IConferenceDAO confDAO = new ConferenceImpl();
-            Enum <?> section = EnumManager.getKindConf(param);
+            Enum <?> section = SectionManager.getKindConf(param);
 
             HttpSession session = request.getSession();
             User user = (User) session.getAttribute(Constants.USER);
