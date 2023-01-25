@@ -3,14 +3,14 @@ package model.beans;
 public class User {
     private int id;
     private String login;
-    private String mail;
+    private String email;
     private String firstName;
     private String lastName;
 
-    public User(int id, String login, String mail, String firstName, String lastName) {
+    public User(int id, String login, String email, String firstName, String lastName) {
         this.id = id;
         this.login = login;
-        this.mail = mail;
+        this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
     }
@@ -21,9 +21,9 @@ public class User {
         this.login = login;
     }
 
-    public User(String login, String mail, String firstName, String lastName) {
+    public User(String login, String email, String firstName, String lastName) {
         this.login = login;
-        this.mail = mail;
+        this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
     }
@@ -44,12 +44,12 @@ public class User {
         this.login = login;
     }
 
-    public String getMail() {
-        return mail;
+    public String getEmail() {
+        return email;
     }
 
-    public void setMail(String mail) {
-        this.mail = mail;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getFirstName() {
