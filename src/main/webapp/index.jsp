@@ -4,10 +4,11 @@
   <head>
     <meta charset="UTF-8">
     <title>Main page of project</title>
-    <script type="text/javascript" src='<c:url value="/JS/main.js"/>'></script>
+    <link rel="stylesheet" href='<c:url value ="/css/main.css"/>'>
+    <script type="text/javascript" src='<c:url value="/js/main.js"/>'></script>
   </head>
   <body>
-    <h1> Hello, dear friend! </h1>
+
     <c:if test="${not empty message}">
       <span style="color: red">${message}</span>
     </c:if>
@@ -27,33 +28,15 @@
     </c:choose>
 
     <br>
-    <a href="JavaScript:sendSect('all')">All</a>
-    <a href="JavaScript:sendSect('today')">Today</a>
-    <a href="JavaScript:sendSect('tomorrow')">Tomorrow</a>
-    <a href="JavaScript:sendSect('soon')">Soon</a>
-    <a href="JavaScript:sendSect('finished')">Finished</a>
+    <a href="JavaScript:sendData('all')">All</a>
+    <a href="JavaScript:sendData('today')">Today</a>
+    <a href="JavaScript:sendData('tomorrow')">Tomorrow</a>
+    <a href="JavaScript:sendData('soon')">Soon</a>
+    <a href="JavaScript:sendData('past')">Finished</a>
     <br>
 
-    <c:if test="${not empty conferences}">
-      <table style="border:1px solid">
-        <tr>
-          <td>ID</td>
-          <td>Name</td>
-          <td>Place</td>
-          <td>Date</td>
-        </tr>
-        <c:forEach var="conf" items="${conferences}">
-          <tr>
-            <td>${conf.id}</td>
-            <td>
-              <a href="JavaScript:getConf('${conf.id}')">${conf.name}</a>
-            </td>
-            <td>${conf.place}</td>
-            <td>${conf.date}</td>
-          </tr>
-        </c:forEach>
-      </table>
-    </c:if>
+    <!-- Включаю страницу шаблонную -->
+    <jsp:include page="/viewConfList.jsp"/>
 
   </body>
 </html>
