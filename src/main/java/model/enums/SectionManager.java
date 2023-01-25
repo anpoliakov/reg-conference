@@ -1,6 +1,6 @@
 package model.enums;
 
-public class EnumManager {
+public class SectionManager {
     public static SectionKind getKindConf(String param) {
         try {
             SectionKind kind = SectionKind.valueOf(param.toUpperCase());
