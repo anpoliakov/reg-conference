@@ -15,6 +15,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ConferenceImpl implements IConferenceDAO {
+    public ConferenceImpl() {
+        super();
+    }
 
     public List<Conference> getConferences(Enum<?> select, User user) throws SQLException {
         Connection conn = null;
