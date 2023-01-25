@@ -5,7 +5,9 @@ import constants.Constants;
 import java.sql.*;
 
 public class ConnectionManager {
-    //загрузит драйвер postgreSQL при старте приложения
+    private static Connection conn = null;
+
+    //загрузит драйвер postgresql при старте приложения
     static {
         try {
             Class.forName(Constants.DRIVER_NAME);
@@ -13,8 +15,6 @@ public class ConnectionManager {
             e.printStackTrace();
         }
     }
-
-    private static Connection conn = null;
 
     public static Connection createConnection (){
         try {
