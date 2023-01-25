@@ -1,7 +1,7 @@
-function sendSect(section) {
+function sendData(section) {
     var sect = document.createElement("input");
-    sect.type = "hidden";
     sect.name = "section";
+    sect.type = "hidden";
     sect.value = section;
 
     var form = document.createElement("form");
@@ -11,7 +11,6 @@ function sendSect(section) {
 
     form.appendChild(sect);
     document.body.append(form);
-
     form.submit();
 }
 
