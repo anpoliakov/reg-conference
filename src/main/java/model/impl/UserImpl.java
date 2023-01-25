@@ -17,18 +17,23 @@ public class UserImpl implements IUserDAO {
         ResultSet rs = null;
         User user = null;
 
-        conn = ConnectionManager.createConnection();
-        pst = conn.prepareStatement(SQLConstants.SELECT_USER);
-        pst.setString(1, login);
-        pst.setString(2, password);
-        rs = pst.executeQuery();
+        try {
+            conn = ConnectionManager.createConnection();
+            pst = conn.prepareStatement(SQLConstants.SELECT_USER);
+            pst.setString(1, login);
+            pst.setString(2, password);
+            rs = pst.executeQuery();
 
-        while (rs.next()){
-            int id_from_db = rs.getInt(SQLConstants.ID_LABEL);
-            String login_from_db = rs.getString(SQLConstants.LOGIN_LABEL);
-            user = new User(id_from_db, login_from_db);
+            while (rs.next()){
+                int id_from_db = rs.getInt(SQLConstants.ID_LABEL);
+                String login_from_db = rs.getString(SQLConstants.LOGIN_LABEL);
+                user = new User(id_from_db, login_from_db);
+            }
+        } finally {
+            ConnectionManager.closeResultSet(rs);
+            ConnectionManager.closeStatement(pst);
+            ConnectionManager.closeConnection();
         }
-
         return user;
     }
 
@@ -37,19 +42,24 @@ public class UserImpl implements IUserDAO {
         PreparedStatement pst = null;
         boolean result = false;
 
-        conn = ConnectionManager.createConnection();
-        pst = conn.prepareStatement(SQLConstants.INSERT_USER);
-        pst.setString(1, user.getLogin());
-        pst.setString(2, user.getMail());
-        pst.setString(3, password);
-        pst.setString(4, user.getFirstName());
-        pst.setString(5, user.getLastName());
+        try {
+            conn = ConnectionManager.createConnection();
+            pst = conn.prepareStatement(SQLConstants.INSERT_USER);
+            pst.setString(1, user.getLogin());
+            pst.setString(2, user.getEmail());
+            pst.setString(3, user.getFirstName());
+            pst.setString(4, user.getLastName());
+            pst.setString(5, password);
 
-        synchronized (UserImpl.class){
-            if(!isFoundLogin(user.getLogin())){
-                pst.executeUpdate();
-                result = true;
+            synchronized (UserImpl.class){
+                if(!isFoundLogin(user.getLogin())){
+                    pst.executeUpdate();
+                    result = true;
+                }
             }
+        } finally {
+            ConnectionManager.closeStatement(pst);
+            ConnectionManager.closeConnection();
         }
 
         return result;
