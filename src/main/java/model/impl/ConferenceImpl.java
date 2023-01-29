@@ -87,4 +87,57 @@ public class ConferenceImpl implements IConferenceDAO {
 
         return indexConf;
     }
+
+    @Override
+    public int addConference(Conference conference, User user) throws SQLException {
+        Connection conn = null;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+
+        int idConf = -1;
+
+        try {
+            conn = ConnectionManager.createConnection();
+            pst = conn.prepareStatement(SQLConstants.INSERT_CONF,Statement.RETURN_GENERATED_KEYS);
+            pst.setInt(1, user.getId());
+            pst.setString(2, conference.getTitle());
+            pst.setString(3, conference.getDescr());
+            pst.setString(4, conference.getPlace());
+            pst.setDate(5, conference.getDate());
+
+            if(pst.executeUpdate() != 0){
+                rs = pst.getGeneratedKeys();
+                if(rs.next()){
+                    idConf = rs.getInt(1);
+                }
+            }
+        } finally {
+            ConnectionManager.closeResultSet(rs);
+            ConnectionManager.closeStatement(pst);
+            ConnectionManager.closeConnection();
+        }
+        return idConf;
+    }
+
+    @Override
+    public void addConferenceEvents(List<Event> events, int idConf) throws SQLException {
+        Connection cn = null;
+        PreparedStatement pst = null;
+
+        try {
+            cn = ConnectionManager.createConnection();
+            pst = cn.prepareStatement(SQLConstants.INSERT_EVENTS);
+            pst.setInt(1, idConf);
+            for (Event event : events) {
+                pst.setString(2, event.getName());
+                pst.setTime(3, event.getTime());
+                pst.executeUpdate();
+            }
+
+        } finally {
+            ConnectionManager.closeStatement(pst);
+            ConnectionManager.closeConnection();
+        }
+
+    }
 }
