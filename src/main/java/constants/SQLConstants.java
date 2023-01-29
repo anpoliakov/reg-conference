@@ -26,4 +26,7 @@ public class SQLConstants {
     public static final String FNAME_LABEL = "firstname";
     public static final String SNAME_LABEL = "secondname";
     public static final String EMAIL_LABEL = "email";
+
+    public static final String INSERT_CONF = "INSERT INTO conferences (idUser, title, descr, place, date) VALUES (?,?,?,?,?)";
+    public static final String INSERT_EVENTS = "INSERT INTO events (idConf, name, time) VALUES (?, ?, ?)";
 }
