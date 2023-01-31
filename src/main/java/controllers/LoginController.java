@@ -25,7 +25,7 @@ public class LoginController extends AbstractController{
         String password = request.getParameter(Constants.PASSWORD);
 
         if(login == null || password == null){
-            jumpError(request,response,Constants.LOGIN_JSP, Constants.MESS_NULL);
+            jumpError(request,response,Constants.LOGIN_JSP, Constants.NULL_MESS);
             return;
         }
 

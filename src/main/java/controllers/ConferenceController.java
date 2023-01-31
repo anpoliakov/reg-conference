@@ -37,10 +37,11 @@ public class ConferenceController extends AbstractController{
 
         try {
             IConferenceDAO confDAO = new ConferenceImpl();
-            Enum <?> section = SectionManager.getKindConf(param);
+            Enum <?> section = SectionManager.getSectionKind(param);
 
             HttpSession session = request.getSession();
             User user = (User) session.getAttribute(Constants.USER);
+
             List<Conference> conferences = confDAO.getConferences(section, user);
             session.setAttribute(Constants.CONF_LIST, conferences);
 

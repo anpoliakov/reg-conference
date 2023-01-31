@@ -24,7 +24,7 @@ public class RegistrationController extends AbstractController {
         String mail = request.getParameter(Constants.MAIL);
 
         if(login == null || password == null || firstname == null || lastname == null || mail == null) {
-            jumpError(request, response, Constants.REGIST_JSP, Constants.MESS_NULL);
+            jumpError(request, response, Constants.REGIST_JSP, Constants.NULL_MESS);
             return;
         }
 
