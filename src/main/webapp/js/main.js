@@ -30,3 +30,27 @@ function getConf(id){
 
     form.submit();
 }
+
+function addEvent() {
+    var event = document.getElementById('event')
+    var newEvent = event.cloneNode(true);
+    var childs = newEvent.children;
+    childs[0].value = "";
+    childs[1].value = "";
+    var button = createButton();
+    newEvent.append(button);
+    addConf.append(newEvent);
+}
+
+function createButton() {
+    var input = document.createElement("input");
+    input.type = "button";
+    input.value = "Delete";
+    input.onclick = deleteEvent;
+    return input;
+}
+
+function deleteEvent(event) {
+    var item = event.target.parentElement;
+    item.remove();
+}
