@@ -15,7 +15,7 @@ public class LogoutController extends AbstractController {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         session.invalidate();
-        response.sendRedirect(Constants.OUT_INDEX_JSP);
+        response.sendRedirect(Constants.OUT_JSP);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

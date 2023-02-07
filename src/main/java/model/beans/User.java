@@ -3,16 +3,16 @@ package model.beans;
 public class User {
     private int id;
     private String login;
-    private String email;
     private String firstName;
-    private String lastName;
+    private String secondName;
+    private String email;
 
-    public User(int id, String login, String email, String firstName, String lastName) {
+    public User(int id, String login, String email, String firstName, String secondName) {
         this.id = id;
         this.login = login;
         this.email = email;
         this.firstName = firstName;
-        this.lastName = lastName;
+        this.secondName = secondName;
     }
 
     //используется для уточнения "есть ли user в data base"
@@ -21,11 +21,11 @@ public class User {
         this.login = login;
     }
 
-    public User(String login, String email, String firstName, String lastName) {
+    public User(String login, String email, String firstName, String secondName) {
         this.login = login;
         this.email = email;
         this.firstName = firstName;
-        this.lastName = lastName;
+        this.secondName = secondName;
     }
 
     public int getId() {
@@ -60,11 +60,11 @@ public class User {
         this.firstName = firstName;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getSecondName() {
+        return secondName;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setSecondName(String secondName) {
+        this.secondName = secondName;
     }
 }

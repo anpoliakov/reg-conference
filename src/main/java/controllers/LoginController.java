@@ -33,7 +33,7 @@ public class LoginController extends AbstractController{
         password = password.trim();
 
         if(login.equals(Constants.EMPTY) || password.equals(Constants.EMPTY)){
-            jumpError(request,response,Constants.LOGIN_JSP,Constants.MESS_EMPTY);
+            jumpError(request,response,Constants.LOGIN_JSP,Constants.EMPTY_MESS);
             return;
         }
 
@@ -43,7 +43,7 @@ public class LoginController extends AbstractController{
             if(user != null){
                 HttpSession session = request.getSession();
                 session.setAttribute(Constants.USER, user);
-                jump(request,response,Constants.INDEX_JSP);
+                jump(request,response,Constants.CONF_CONTR);
             }else{
                 jumpError(request,response,Constants.LOGIN_JSP,Constants.USER_NOT_FOUND);
             }

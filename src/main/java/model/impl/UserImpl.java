@@ -48,7 +48,7 @@ public class UserImpl implements IUserDAO {
             pst.setString(1, user.getLogin());
             pst.setString(2, user.getEmail());
             pst.setString(3, user.getFirstName());
-            pst.setString(4, user.getLastName());
+            pst.setString(4, user.getSecondName());
             pst.setString(5, password);
 
             synchronized (UserImpl.class){

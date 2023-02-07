@@ -18,8 +18,8 @@
         <input type="text" name="<%= Constants.LOGIN %>" placeholder="Login"><br>
         <input type="password" name="<%= Constants.PASSWORD %>" placeholder="Password" > <br>
         <input type="text" name="<%= Constants.FIRST_NAME %>" placeholder="First name" > <br>
-        <input type="text" name="<%= Constants.LAST_NAME %>" placeholder="Last name" > <br>
-        <input type="text" name="<%= Constants.MAIL %>" placeholder="Email" > <br>
+        <input type="text" name="<%= Constants.SECOND_NAME %>" placeholder="Last name" > <br>
+        <input type="text" name="<%= Constants.EMAIL %>" placeholder="Email" > <br>
         <input type="submit" value="Registration" >
     </form>
 </body>

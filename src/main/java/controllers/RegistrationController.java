@@ -20,8 +20,8 @@ public class RegistrationController extends AbstractController {
         String login = request.getParameter(Constants.LOGIN);
         String password = request.getParameter(Constants.PASSWORD);
         String firstname = request.getParameter(Constants.FIRST_NAME);
-        String lastname = request.getParameter(Constants.LAST_NAME);
-        String mail = request.getParameter(Constants.MAIL);
+        String lastname = request.getParameter(Constants.SECOND_NAME);
+        String mail = request.getParameter(Constants.EMAIL);
 
         if(login == null || password == null || firstname == null || lastname == null || mail == null) {
             jumpError(request, response, Constants.REGIST_JSP, Constants.NULL_MESS);
@@ -36,7 +36,7 @@ public class RegistrationController extends AbstractController {
 
         if(login.equals(Constants.EMPTY) || password.equals(Constants.EMPTY) || mail.equals(Constants.EMPTY) ||
                 firstname.equals(Constants.EMPTY) || lastname.equals(Constants.EMPTY)) {
-            jumpError(request, response, Constants.REGIST_JSP, Constants.MESS_EMPTY);
+            jumpError(request, response, Constants.REGIST_JSP, Constants.EMPTY_MESS);
             return;
         }
 
@@ -47,9 +47,9 @@ public class RegistrationController extends AbstractController {
             if(userDAO.isAddUser(user,password)){
                 HttpSession session = request.getSession();
                 session.setAttribute(Constants.USER, user);
-                jump(request,response,Constants.INDEX_JSP);
+                jump(request,response,Constants.CONF_CONTR);
             }else {
-                jumpError(request, response, Constants.REGIST_JSP, Constants.USER_IS_FOUND);
+                jumpError(request, response, Constants.REGIST_JSP, Constants.USER_FOUND_MESS);
             }
         }catch (SQLException e){
             jumpError(request, response, Constants.REGIST_JSP, e.getMessage());

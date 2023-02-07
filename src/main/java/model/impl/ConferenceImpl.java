@@ -19,12 +19,12 @@ public class ConferenceImpl implements IConferenceDAO {
         super();
     }
 
-    public List<Conference> getConferences(Enum<?> select, User user) throws SQLException {
+    public List<Conference> getConferences(Enum<?> section, User user) throws SQLException {
         Connection conn = null;
         PreparedStatement st = null;
         ResultSet rs = null;
 
-        SectionKind sect = (SectionKind) select;
+        SectionKind sect = (SectionKind) section;
         String sql = sect.getSql();
         List<Conference> conferences = new ArrayList<Conference>();
 
@@ -98,17 +98,20 @@ public class ConferenceImpl implements IConferenceDAO {
 
         try {
             conn = ConnectionManager.createConnection();
-            pst = conn.prepareStatement(SQLConstants.INSERT_CONF,Statement.RETURN_GENERATED_KEYS);
+            pst = conn.prepareStatement(SQLConstants.INSERT_CONF);
+
             pst.setInt(1, user.getId());
             pst.setString(2, conference.getTitle());
             pst.setString(3, conference.getDescr());
             pst.setString(4, conference.getPlace());
             pst.setDate(5, conference.getDate());
 
+            /* метод executeUpdate возвращает кол-во строк которые были изменены(внесены) в бд */
             if(pst.executeUpdate() != 0){
                 rs = pst.getGeneratedKeys();
                 if(rs.next()){
-                    idConf = rs.getInt(1);
+                    idConf = rs.findColumn("id");
+                    System.out.println("Значение id = " + idConf);
                 }
             }
         } finally {
@@ -138,6 +141,30 @@ public class ConferenceImpl implements IConferenceDAO {
             ConnectionManager.closeStatement(pst);
             ConnectionManager.closeConnection();
         }
+
+    }
+
+    @Override
+    public void removeConferences(String[] idConferences, User user) throws SQLException {
+        Connection cn = null;
+        PreparedStatement pst = null;
+
+        try {
+            cn = ConnectionManager.createConnection();
+            pst = cn.prepareStatement(SQLConstants.DELETE_CONF);
+            pst.setInt(2, user.getId());
+            for (String idConf : idConferences) {
+                pst.setString(1, idConf);
+                System.out.println(pst);
+                pst.executeUpdate();
+            }
+        } finally {
+            ConnectionManager.closeStatement(pst);
+            ConnectionManager.closeConnection();
+        }
+
+
+
 
     }
 }

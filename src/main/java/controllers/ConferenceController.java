@@ -32,7 +32,7 @@ public class ConferenceController extends AbstractController{
         }
 
         if (param == null) {
-            param = Constants.TODAY_SECT;
+            param = Constants.TODAY;
         }
 
         try {
