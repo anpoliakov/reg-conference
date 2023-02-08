@@ -22,7 +22,7 @@
         <p>Events</p>
         <div id="event">
             <input type="text" name="<%= Constants.TITLE_EV%>" placeholder="Title" required>
-            <input type="time" name="<%= Constants.TIME %>" placeholder="Time" required>
+            <input type="time" name="<%= Constants.TIME_EV %>" placeholder="Time" required>
         </div>
     </form>
 

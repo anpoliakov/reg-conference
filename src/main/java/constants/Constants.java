@@ -14,11 +14,11 @@ public final class Constants {
     public static final String EMAIL = "email";
 
     public static final String TITLE = "title";
-    public static final String TITLE_EV = "evTitle";
     public static final String DESCR = "descr";
     public static final String PLACE = "place";
     public static final String DATE = "date";
-    public static final String TIME = "time";
+    public static final String TITLE_EV = "evTitle";
+    public static final String TIME_EV = "time";
 
     public static final String EMPTY = "";
 
