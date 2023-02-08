@@ -96,9 +96,13 @@ public class ConferenceImpl implements IConferenceDAO {
 
         int idConf = -1;
 
+        /**
+         * Реализую возможность добавления конференции в БД и сразу же получаю ID конференции,
+         * для дальнейшего использования как FK в таблице events
+         * **/
         try {
             conn = ConnectionManager.createConnection();
-            pst = conn.prepareStatement(SQLConstants.INSERT_CONF);
+            pst = conn.prepareStatement(SQLConstants.INSERT_CONF, Statement.RETURN_GENERATED_KEYS);
 
             pst.setInt(1, user.getId());
             pst.setString(2, conference.getTitle());
@@ -109,9 +113,9 @@ public class ConferenceImpl implements IConferenceDAO {
             /* метод executeUpdate возвращает кол-во строк которые были изменены(внесены) в бд */
             if(pst.executeUpdate() != 0){
                 rs = pst.getGeneratedKeys();
+
                 if(rs.next()){
-                    idConf = rs.findColumn("id");
-                    System.out.println("Значение id = " + idConf);
+                    idConf = rs.getInt(1);
                 }
             }
         } finally {

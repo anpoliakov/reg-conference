@@ -10,7 +10,6 @@ import model.interfaces.IConferenceDAO;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -21,6 +20,10 @@ import java.util.List;
 
 @WebServlet("/addConf")
 public class AddConferenceController extends AbstractController {
+    public AddConferenceController() {
+        super();
+    }
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException  {
         String title = request.getParameter(Constants.TITLE);
         String descr = request.getParameter(Constants.DESCR);
@@ -33,7 +36,7 @@ public class AddConferenceController extends AbstractController {
         }
 
         if (title.equals(Constants.EMPTY)) {
-            jumpError(request, response, Constants.ADD_CONF_JSP, Constants.MESS_EMPTY);
+            jumpError(request, response, Constants.ADD_CONF_JSP, Constants.EMPTY_MESS);
             return;
         }
 
@@ -45,10 +48,11 @@ public class AddConferenceController extends AbstractController {
             IConferenceDAO confDAO = new ConferenceImpl();
 
             int idConf = confDAO.addConference(conference, user);
-            if (idConf != -1) {
-                String[] titlesEv = request.getParameterValues(Constants.TITLE_EV);
-                String[] timesEV = request.getParameterValues(Constants.TIME);
-                List<Event> events = EventFactory.getEvents(titlesEv, timesEV);
+            if (idConf != -1) { //следовательно концеренция была добавлена и необходимо внести events
+                String[] titlesEvents = request.getParameterValues(Constants.TITLE_EV);
+                String[] timesEvents = request.getParameterValues(Constants.TIME_EV);
+
+                List<Event> events = EventFactory.getEvents(titlesEvents, timesEvents);
                 confDAO.addConferenceEvents(events, idConf);
 
                 jump(request, response, Constants.CONF_CONTR);
