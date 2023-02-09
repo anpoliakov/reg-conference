@@ -25,19 +25,15 @@ public class ConferenceController extends AbstractController{
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String param = request.getParameter(Constants.SECTION);
+        String paramChoice = request.getParameter(Constants.SECTION);
 
-        if(param == null) {
-            param = (String) request.getAttribute(Constants.SECTION);
-        }
-
-        if (param == null) {
-            param = Constants.TODAY;
+        if (paramChoice == null) {
+            paramChoice = Constants.TODAY;
         }
 
         try {
             IConferenceDAO confDAO = new ConferenceImpl();
-            Enum <?> section = SectionManager.getSectionKind(param);
+            Enum <?> section = SectionManager.getSectionKind(paramChoice);
 
             HttpSession session = request.getSession();
             User user = (User) session.getAttribute(Constants.USER);
@@ -47,7 +43,6 @@ public class ConferenceController extends AbstractController{
 
             if (section == SectionKind.CONF_BY_USER) {
                 response.sendRedirect("/reg-conferences" + Constants.HOME_JSP);
-                //jump(request, response, Constants.HOME_JSP);
             }else {
                 jump(request, response, Constants.INDEX_JSP);
             }
