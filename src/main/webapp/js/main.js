@@ -42,7 +42,8 @@ function getConf(id){
 }
 
 function deleteConf() {
-    deleteForm.submit();
+    const formForDelete = document.getElementsByName('deleteForm');
+    formForDelete.submit();
 }
 
 function addEvent() {
