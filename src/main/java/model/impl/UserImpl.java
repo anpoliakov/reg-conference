@@ -25,15 +25,20 @@ public class UserImpl implements IUserDAO {
             rs = pst.executeQuery();
 
             while (rs.next()){
-                int id_from_db = rs.getInt(SQLConstants.ID_LABEL);
-                String login_from_db = rs.getString(SQLConstants.LOGIN_LABEL);
-                user = new User(id_from_db, login_from_db);
+                int id = rs.getInt(SQLConstants.ID_LABEL);
+                String login_user = rs.getString(SQLConstants.LOGIN_LABEL);
+                String firstName = rs.getString(SQLConstants.FNAME_LABEL);
+                String secondName = rs.getString(SQLConstants.SNAME_LABEL);
+                String email = rs.getString(SQLConstants.EMAIL_LABEL);
+
+                user = new User(id, login_user, firstName, secondName, email);
             }
         } finally {
             ConnectionManager.closeResultSet(rs);
             ConnectionManager.closeStatement(pst);
             ConnectionManager.closeConnection();
         }
+
         return user;
     }
 
