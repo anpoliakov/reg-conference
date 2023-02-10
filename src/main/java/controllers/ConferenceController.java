@@ -27,6 +27,10 @@ public class ConferenceController extends AbstractController{
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String paramChoice = request.getParameter(Constants.SECTION);
 
+        if(paramChoice == null) {
+            paramChoice = (String) request.getAttribute(Constants.SECTION);
+        }
+
         if (paramChoice == null) {
             paramChoice = Constants.TODAY;
         }
