@@ -7,17 +7,13 @@
     <link rel="stylesheet" href='<c:url value ="/css/main.css"/>'>
     <script type="text/javascript" src='<c:url value="/js/main.js"/>'></script>
   </head>
+
   <body>
-
-    <c:if test="${not empty message}">
-      <span style="color: red">${message}</span>
-    </c:if>
-
-
-    <!-- аналог switch в Java-->
+    <!-- аналог switch -->
     <c:choose>
       <c:when test="${not empty user}">
-        <p>Your login : ${user.login}</p>
+        <p>Login: ${user.login}</p>
+        <a href= "JavaScript:sendData('conf_by_user')">Cabinet</a>
         <a href='<c:url value="/logout"/>'>Logout</a>
       </c:when>
 
@@ -27,13 +23,21 @@
       </c:otherwise>
     </c:choose>
 
+    <c:if test="${not empty message}">
+      <span style="color: red">${message}</span>
+    </c:if>
+
     <br>
-    <a href="JavaScript:sendData('all')">All</a>
-    <a href="JavaScript:sendData('today')">Today</a>
-    <a href="JavaScript:sendData('tomorrow')">Tomorrow</a>
-    <a href="JavaScript:sendData('soon')">Soon</a>
-    <a href="JavaScript:sendData('past')">Finished</a>
-    <br>
+
+    <table>
+      <tr>
+        <th><a href="JavaScript: sendData('all')">All</a></th>
+        <th><a href="JavaScript: sendData('today')">Today</a></th>
+        <th><a href="JavaScript: sendData('tomorrow')">Tomorrow</a></th>
+        <th><a href="JavaScript: sendData('soon')">Soon</a></th>
+        <th><a href="JavaScript: sendData('past')">Past</a></th>
+      </tr>
+    </table>
 
     <!-- Включаю страницу шаблонную -->
     <jsp:include page="/viewConfList.jsp"/>
