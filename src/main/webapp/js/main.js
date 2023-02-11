@@ -42,19 +42,26 @@ function getConf(id){
 }
 
 function deleteConf() {
-    const formForDelete = document.getElementsByName('deleteForm');
-    formForDelete.submit();
+    var form = document.getElementsByName("deleteForm");
+    var input = document.createElement("input");
+    input.name = "idConf";
+    input.type = "hidden";
+
+    form.appendChild(input);
+    form.submit();
 }
 
 function addEvent() {
     var event = document.getElementById('event')
+    var addConfForm = document.getElementById('idConf');
     var newEvent = event.cloneNode(true);
     var childs = newEvent.children;
     childs[0].value = "";
     childs[1].value = "";
+
     var button = createButton();
     newEvent.append(button);
-    addConf.append(newEvent);
+    addConfForm.append(newEvent);
 }
 function createButton() {
     var input = document.createElement("input");
