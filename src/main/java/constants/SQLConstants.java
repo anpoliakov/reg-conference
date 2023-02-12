@@ -29,7 +29,5 @@ public class SQLConstants {
 
     public static final String INSERT_CONF = "INSERT INTO conferences (idUser, title, descr, place, date) VALUES (?,?,?,?,?)";
     public static final String INSERT_EVENTS = "INSERT INTO events (idConf, name, time) VALUES (?, ?, ?)";
-    public static final String DELETE_CONF = "DELETE FROM conferences,events using conferences,events "
-                    + "where conferences.id=? and conferences.idUser=? "
-                    + "and conferences.id=events.idConf";
+    public static final String DELETE_CONF = "DELETE FROM conferences WHERE id = ? AND idUser = ?";
 }
