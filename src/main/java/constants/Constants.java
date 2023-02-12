@@ -48,7 +48,7 @@ public final class Constants {
     public static final String CONF_JSP = "/conf.jsp";
     public static final String HOME_JSP = "/home.jsp";
     public static final String ADD_CONF_JSP = "/addConf.jsp";
-    public static final String OUT_JSP = "/reg-conferences/start.jsp";
+    public static final String OUT_JSP = "/reg-conferences/index.jsp";
 
 
     public static final String TIME_PATTERN = "HH:mm";
