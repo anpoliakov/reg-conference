@@ -15,7 +15,6 @@ import java.sql.SQLException;
 
 @WebServlet("/registration")
 public class RegistrationController extends AbstractController {
-    //TODO: РАЗОБРАТЬСЯ С Parameter и Attribute
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String login = request.getParameter(Constants.LOGIN);
         String password = request.getParameter(Constants.PASSWORD);

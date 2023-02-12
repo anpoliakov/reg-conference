@@ -110,11 +110,13 @@ public class ConferenceImpl implements IConferenceDAO {
             pst.setString(4, conference.getPlace());
             pst.setDate(5, conference.getDate());
 
-            /* метод executeUpdate возвращает кол-во строк которые были изменены(внесены) в бд */
+            // метод executeUpdate возвращает кол-во строк которые были изменены(внесены) в бд
             if(pst.executeUpdate() != 0){
                 rs = pst.getGeneratedKeys();
 
+                // получаю ID внесённой конференции
                 if(rs.next()){
+                    //нумерация колонок с №1
                     idConf = rs.getInt(1);
                 }
             }
@@ -158,7 +160,7 @@ public class ConferenceImpl implements IConferenceDAO {
             pst = cn.prepareStatement(SQLConstants.DELETE_CONF);
             pst.setInt(2, user.getId());
             for (String idConf : idConferences) {
-                pst.setString(1, idConf);
+                pst.setInt(1, Integer.valueOf(idConf));
                 System.out.println(pst);
                 pst.executeUpdate();
             }
@@ -166,9 +168,6 @@ public class ConferenceImpl implements IConferenceDAO {
             ConnectionManager.closeStatement(pst);
             ConnectionManager.closeConnection();
         }
-
-
-
 
     }
 }

@@ -48,7 +48,7 @@ public class AddConferenceController extends AbstractController {
             IConferenceDAO confDAO = new ConferenceImpl();
 
             int idConf = confDAO.addConference(conference, user);
-            if (idConf != -1) { //следовательно концеренция была добавлена и необходимо внести events
+            if (idConf != -1) { //следовательно конференция была добавлена и необходимо внести events
                 String[] titlesEvents = request.getParameterValues(Constants.TITLE_EV);
                 String[] timesEvents = request.getParameterValues(Constants.TIME_EV);
 
