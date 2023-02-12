@@ -41,19 +41,9 @@ function getConf(id){
     form.submit();
 }
 
-function deleteConf() {
-    var form = document.getElementsByName("deleteForm");
-    var input = document.createElement("input");
-    input.name = "idConf";
-    input.type = "hidden";
-
-    form.appendChild(input);
-    form.submit();
-}
-
 function addEvent() {
     var event = document.getElementById('event')
-    var addConfForm = document.getElementById('idConf');
+    var addConfForm = document.getElementById('addConf');
     var newEvent = event.cloneNode(true);
     var childs = newEvent.children;
     childs[0].value = "";
@@ -63,6 +53,7 @@ function addEvent() {
     newEvent.append(button);
     addConfForm.append(newEvent);
 }
+
 function createButton() {
     var input = document.createElement("input");
     input.type = "button";
@@ -70,6 +61,7 @@ function createButton() {
     input.onclick = deleteEvent;
     return input;
 }
+
 function deleteEvent(event) {
     var item = event.target.parentElement;
     item.remove();
