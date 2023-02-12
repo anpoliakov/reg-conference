@@ -5,10 +5,7 @@ import model.beans.User;
 import model.db.ConnectionManager;
 import model.interfaces.IUserDAO;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class UserImpl implements IUserDAO {
     public User getUser(String login, String password) throws SQLException {
@@ -45,11 +42,12 @@ public class UserImpl implements IUserDAO {
     public boolean isAddUser(User user, String password) throws SQLException {
         Connection conn = null;
         PreparedStatement pst = null;
+        ResultSet rs = null;
         boolean result = false;
 
         try {
             conn = ConnectionManager.createConnection();
-            pst = conn.prepareStatement(SQLConstants.INSERT_USER);
+            pst = conn.prepareStatement(SQLConstants.INSERT_USER, Statement.RETURN_GENERATED_KEYS);
             pst.setString(1, user.getLogin());
             pst.setString(2, user.getEmail());
             pst.setString(3, user.getFirstName());
@@ -57,12 +55,23 @@ public class UserImpl implements IUserDAO {
             pst.setString(5, password);
 
             synchronized (UserImpl.class){
+                //если login (пользователь в БД не существует)
                 if(!isFoundLogin(user.getLogin())){
-                    pst.executeUpdate();
+
+                    //создаём
+                    if(pst.executeUpdate() != 0){
+
+                        //присвоенный postgresql id добавляем в bean - user
+                        rs = pst.getGeneratedKeys();
+                        if(rs.next()){
+                            user.setId(rs.getInt(1));
+                        }
+                    }
                     result = true;
                 }
             }
         } finally {
+            ConnectionManager.closeResultSet(rs);
             ConnectionManager.closeStatement(pst);
             ConnectionManager.closeConnection();
         }
