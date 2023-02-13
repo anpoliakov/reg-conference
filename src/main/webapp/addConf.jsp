@@ -27,7 +27,8 @@
     </form>
 
     <br>
-    <a href="JavaScript:addEvent()">Add event</a><br>
+<%--    <a href="JavaScript:addEvent()">Add event</a><br>--%>
+    <input type="button" value="Add event" onclick="addEvent()"><br>
     <input type="submit" value="Create" form = "addConf">
 </body>
 </html>

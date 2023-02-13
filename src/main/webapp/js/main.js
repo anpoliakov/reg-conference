@@ -1,3 +1,4 @@
+//Если пользователь вошёл в свой кабинет - добавляем чек-боксы (для информирования об выбранном удалении)
 document.addEventListener('DOMContentLoaded', function() {
     const HOME_PAGE = '/home.jsp';
     var path = window.location.pathname;
@@ -7,6 +8,26 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
 });
+
+function addCheckBox() {
+    var rows = document.querySelectorAll("tr");
+
+    for (let i = 1; i < rows.length; i++) {
+        let idConf = rows[i].firstElementChild.firstChild.nodeValue;
+        let td = createCell(idConf);
+        rows[i].insertAdjacentElement("beforeend", td);
+    }
+}
+
+function createCell(idConf){
+    var td = document.createElement("td");
+    var input = document.createElement("input");
+    input.name = "idConf";
+    input.type = "checkbox";
+    input.value = idConf;
+    td.append(input);
+    return td;
+}
 
 function sendData(section) {
     var sect = document.createElement("input");
@@ -65,27 +86,4 @@ function createButton() {
 function deleteEvent(event) {
     var item = event.target.parentElement;
     item.remove();
-}
-
-function addCheckBox() {
-    var rows = document.querySelectorAll("tr");
-
-    for (let i = 1; i < rows.length; i++) {
-        let idConf = rows[i].firstElementChild.firstChild.nodeValue;
-        let td = createCell(idConf);
-        rows[i].insertAdjacentElement("beforeend", td);
-
-    }
-}
-
-function createCell(idConf){
-    var td = document.createElement("td");
-    var input = document.createElement("input");
-    input.name = "idConf";
-    input.type = "checkbox";
-    input.value = idConf;
-
-    td.append(input);
-
-    return td;
 }
