@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <c:if test="${not empty conferences}">
-    <table style='border: 5px double #000'>
+    <table class="table table-striped table-hover">
         <tr>
             <th>Conference</th>
             <th>Place</th>
