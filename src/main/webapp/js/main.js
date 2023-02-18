@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', function() {
     if (page === HOME_PAGE) {
         addCheckBox();
     }
-
 });
 
 function addCheckBox() {
@@ -22,9 +21,11 @@ function addCheckBox() {
 function createCell(idConf){
     var td = document.createElement("td");
     var input = document.createElement("input");
+
     input.name = "idConf";
     input.type = "checkbox";
     input.value = idConf;
+
     td.append(input);
     return td;
 }
