@@ -20,6 +20,8 @@
                 <jsp:include page="/viewConfList.jsp"/>
             </form>
             <input type="submit" value="Delete conferences" form="formDeleteConf" class="btn btn-outline-secondary my-2">
+            <a href='<c:url value = "/addConf.jsp"/>' class="btn btn-outline-secondary my-2">Add Conference</a>
+            <a href='<c:url value = "/index.jsp"/>' class="btn btn-outline-secondary my-2">Return</a>
         </section>
     </c:if>
 
