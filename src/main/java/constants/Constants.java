@@ -32,13 +32,13 @@ public final class Constants {
     public static final String ID_CONF = "idConf";
     public static final String INDEX_CONF = "indexConf";
 
-    public static final String NULL_MESS = "fields are null";
-    public static final String EMPTY_MESS = "fields are empty";
-    public static final String ERROR_MESS = "error data";
-    public static final String INCORRECT_DATE = "Incorrect date";
-    public static final String WRONG_ADD_CONF = "Not add new conference";
-    public static final String USER_NOT_FOUND = "User not found";
-    public static final String USER_FOUND_MESS = "User is exists";
+    public static final String NULL_MESS = "* fields are null";
+    public static final String EMPTY_MESS = "* fields are empty";
+    public static final String ERROR_MESS = "* error data";
+    public static final String INCORRECT_DATE = "* incorrect date";
+    public static final String WRONG_ADD_CONF = "* not add new conference";
+    public static final String USER_NOT_FOUND = "* user not found";
+    public static final String USER_FOUND_MESS = "* user is exists";
     public static final String NOT_SELECT_CONF = "";
 
     public static final String LOGIN_JSP = "/login.jsp";
