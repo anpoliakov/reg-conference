@@ -22,8 +22,11 @@ function createCell(idConf){
     var td = document.createElement("td");
     var input = document.createElement("input");
 
+    td.setAttribute("style",  "width: 30px; height: 30px; text-align: center; vertical-align: center; padding-top: 15px;");
+
     input.name = "idConf";
     input.type = "checkbox";
+    input.setAttribute("style",  "width: 30px; height: 30px; text-align: center; vertical-align: center;");
     input.value = idConf;
 
     td.append(input);
@@ -63,6 +66,7 @@ function getConf(id){
     form.submit();
 }
 
+//Добавление нового event на страницу
 function addEvent() {
     var event = document.getElementById('event')
     var addConfForm = document.getElementById('addConf');
@@ -76,14 +80,19 @@ function addEvent() {
     addConfForm.append(newEvent);
 }
 
+//Создание кнопки "крестик" (для удаление event)
 function createButton() {
     var input = document.createElement("input");
+
     input.type = "button";
-    input.value = "Delete";
+    input.className = "btn-close btn-close-red";
+    input.setAttribute("style",  "width: 38px; height: 38px; margin-top: 28px; padding-left: 0px;");
     input.onclick = deleteEvent;
+
     return input;
 }
 
+//Обработка нажатия на "крестик"
 function deleteEvent(event) {
     var item = event.target.parentElement;
     item.remove();
