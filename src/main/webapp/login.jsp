@@ -20,12 +20,14 @@
 <body class="text-center">
     <main class="form-signin">
         <form action='<c:url value="/login"/>'>
-            <img class="mb-4" src="img/logo.svg" alt="" width="72" height="57">
-            <h1 class="h3 mb-3 fw-normal">Please,enter your login and password!</h1>
+            <img class="mb-4" src="img/logo.svg" alt="" width="60" height="60">
+            <h3 class="h3 mb-3 fw-normal">Please,enter your login and password</h3>
 
-            <!-- Danger message -->
+            <!-- Вывод сообщений об ошибках -->
             <c:if test="${not empty message}">
-                <p style="color: red" class="fs-6 fst-italic">${message}</p>
+                <div class="alert alert-danger d-flex align-items-center" role="alert">
+                        ${message}
+                </div>
             </c:if>
 
             <div class="form-floating">
@@ -38,6 +40,7 @@
             </div>
 
             <button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
+            <a href='<c:url value = "/index.jsp"/>' class="w-100 btn btn-sm btn-secondary" id="distBetweenButLogin">Main Page</a>
             <p class="mt-5 mb-3 text-muted">&copy; 2021-2022</p>
         </form>
     </main>
