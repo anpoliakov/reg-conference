@@ -15,21 +15,47 @@
     <title>Registration</title>
 </head>
 <body>
-    <c:if test="${not empty message}">
-        <span style="color:red">
-            ${message}
-        </span>
-    </c:if>
+    <!-- HEADER -->
+    <jsp:include page="/headerAllPages.jsp"/>
 
-    <h2> Registration form </h2>
-    <form action="/registration" method="POST">
-        <input type="text" name="<%= Constants.LOGIN %>" placeholder="Login"><br>
-        <input type="password" name="<%= Constants.PASSWORD %>" placeholder="Password" > <br>
-        <input type="text" name="<%= Constants.FIRST_NAME %>" placeholder="First name" > <br>
-        <input type="text" name="<%= Constants.SECOND_NAME %>" placeholder="Last name" > <br>
-        <input type="text" name="<%= Constants.EMAIL %>" placeholder="Email" > <br>
-        <input type="submit" value="Registration" >
-    </form>
+    <div class="container">
+        <form class="row g-3" action='<c:url value="/registration"/>' method="POST">
+
+            <h4 class="mb-3" id="distBetweenHeaderAndBody">Registration a new user:</h4>
+
+            <!-- Вывод сообщений об ошибках -->
+            <c:if test="${not empty message}">
+                <div class="alert alert-danger d-flex align-items-center" role="alert">
+                    ${message}
+                </div>
+            </c:if>
+
+            <div class="col-md-6">
+                <label for="inputFirstName" class="form-label">First Name</label>
+                <input type="text" name="<%=Constants.FIRST_NAME%>" class="form-control" id="inputFirstName">
+            </div>
+            <div class="col-md-6">
+                <label for="inputSecondName" class="form-label">Second Name</label>
+                <input type="text" name="<%=Constants.SECOND_NAME%>" class="form-control" id="inputSecondName">
+            </div>
+            <div class="col-12">
+                <label for="inputLogin" class="form-label">Login</label>
+                <input type="text" name="<%=Constants.LOGIN%>" class="form-control" id="inputLogin">
+            </div>
+            <div class="col-12">
+                <label for="inputEmail" class="form-label">Email</label>
+                <input type="email" name="<%=Constants.EMAIL%>" class="form-control" id="inputEmail" placeholder="exam@example.ru">
+            </div>
+            <div class="col-12">
+                <label for="inputPassword" class="form-label">Password</label>
+                <input type="password" name="<%=Constants.PASSWORD%>" class="form-control" id="inputPassword">
+            </div>
+
+            <div class="col-12">
+                <input type="submit" value="Registration" class="btn btn-primary">
+            </div>
+        </form>
+    </div>
 
     <!-- My JavaScript -->
     <script type="text/javascript" src='<c:url value="/js/main.js"/>'></script>
