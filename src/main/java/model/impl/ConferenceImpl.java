@@ -37,10 +37,10 @@ public class ConferenceImpl implements IConferenceDAO {
             rs = st.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt(SQLConstants.ID_LABEL);
-                String title = rs.getString(SQLConstants.TITLE_LABLE);
-                String descr = rs.getString(SQLConstants.DESCR_LABLE);
-                String place = rs.getString(SQLConstants.PLACE_LABLE);
-                Date date = rs.getDate(SQLConstants.DATE_LABLE);
+                String title = rs.getString(SQLConstants.TITLE_LABEL);
+                String descr = rs.getString(SQLConstants.DESCR_LABEL);
+                String place = rs.getString(SQLConstants.PLACE_LABEL);
+                Date date = rs.getDate(SQLConstants.DATE_LABEL);
                 conferences.add(new Conference(id, title, descr, place, date));
             }
 
@@ -66,16 +66,16 @@ public class ConferenceImpl implements IConferenceDAO {
         try {
             conn = ConnectionManager.createConnection();
             pst = conn.prepareStatement(SQLConstants.SELECT_EVENTS);
-            pst.setString(1, idConf);;
+            pst.setInt(1, Integer.valueOf(idConf));
             rs = pst.executeQuery();
 
             List <Event> events = new ArrayList<Event>();
 
             while (rs.next()) {
                 int id = rs.getInt(SQLConstants.ID_LABEL);
-                String title = rs.getString(SQLConstants.TITLE_LABLE);
-                String time = rs.getString(SQLConstants.TIME_LABLE);
-                events.add(new Event(id, title, time));
+                String name = rs.getString(SQLConstants.NAME_LABEL);
+                String time = rs.getString(SQLConstants.TIME_LABEL);
+                events.add(new Event(id, name, time));
             }
             conferences.get(indexConf).setEvents(events);
 
@@ -161,7 +161,6 @@ public class ConferenceImpl implements IConferenceDAO {
             pst.setInt(2, user.getId());
             for (String idConf : idConferences) {
                 pst.setInt(1, Integer.valueOf(idConf));
-                System.out.println(pst);
                 pst.executeUpdate();
             }
         } finally {

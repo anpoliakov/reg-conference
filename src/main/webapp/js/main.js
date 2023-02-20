@@ -56,8 +56,8 @@ function getConf(id){
     input.value = id;
 
     var form = document.createElement("form");
-    form.action = "/reg-conferences/fillConf";
-    form.method = "post";
+    form.action = "/reg-conferences/viewConf";
+    form.method = "POST";
     form.style = "none";
 
     form.appendChild(input);

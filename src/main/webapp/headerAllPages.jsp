@@ -12,9 +12,9 @@
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                 <c:if test="${not empty user}">
                     <li><a href='<c:url value = "/home.jsp"/>' class="nav-link px-2 text-secondary"><c:out value="Hello, ${user.login}!"></c:out></a></li>
-                    <li><a href="JavaScript:sendData('conf_by_user')" class="nav-link px-2 text-white"> My Conferences </a></li>
+                    <li><a href="JavaScript:sendData('conf_by_user')" class="nav-link px-2 text-white"> Your Conferences </a></li>
                 </c:if>
-                <li><a href="<c:url value = "/index.jsp"/>" class="nav-link px-2 text-white">Main Page</a></li>
+                <li><a href="<c:url value = "/index.jsp"/>" class="nav-link px-2 text-white">All Conferences</a></li>
                 <li><a href="#" class="nav-link px-2 text-white">About Me</a></li>
             </ul>
 
