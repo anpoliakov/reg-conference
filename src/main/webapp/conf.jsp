@@ -41,6 +41,11 @@
                 </c:forEach>
             </table>
         </div>
+
+        <!-- Кнопка редактировани конфиренции -->
+        <div class="col-12">
+            <input type="submit" name="Edit Conference" value="${indexConf}" class="btn btn-primary">
+        </div>
     </section>
 
     <!-- Подключаем JavaScript Bootstrap -->

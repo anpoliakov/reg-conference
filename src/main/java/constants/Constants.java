@@ -29,6 +29,7 @@ public final class Constants {
     public static final String MESSAGE = "message";
     public static final String USER = "user";
     public static final String CONF_LIST = "conferences";
+    public static final String ID_CONF_EDIT = "id_conf_edit";
     public static final String ID_CONF = "idConf";
     public static final String INDEX_CONF = "indexConf";
 
