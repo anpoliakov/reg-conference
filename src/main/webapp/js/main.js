@@ -97,3 +97,22 @@ function deleteEvent(event) {
     var item = event.target.parentElement;
     item.remove();
 }
+
+//Кнопка для редактирования конфиренции
+function editConf(id){
+    var input = document.createElement("input");
+    var form = document.createElement("form");
+
+    input.type = "hidden";
+    input.value = id;
+    input.name = "idConf";
+
+    form.method = "GET";
+    form.action = "/reg-conferences/editConf";
+    form.style = "none";
+
+    form.appendChild(input);
+    document.body.append(form);
+
+    form.submit();
+}
