@@ -19,13 +19,14 @@
     <jsp:include page="/headerAllPages.jsp"/>
 
     <!-- Include a main variable  -->
-    <c:set var="conf" value="${conferences[indexConf]}" scope="page"/>
+    <c:set var="conf" value="${conferences[indexConf]}" scope="application"/>
 
     <section class="py-5 text-center container">
         <div class="row py-lg-5">
             <h2 class="fw-light">${conf.title}</h2>
             <p class="lead text-muted">Place: ${conf.place}</p>
             <p class="lead text-muted">Date: ${conf.date}</p>
+            <p class="lead text-muted">ID: ${conf.id}</p>
 
             <h4 class="fw-light">Conference program:</h4>
             <table class="table table-striped table-hover">
@@ -44,7 +45,7 @@
 
         <!-- Кнопка редактировани конфиренции -->
         <div class="col-12">
-            <input type="submit" name="Edit Conference" value="${indexConf}" class="btn btn-primary">
+            <input type="button" value="Edit Conference" class="btn btn-primary" onclick="editConf(${conf.id})">
         </div>
     </section>
 
