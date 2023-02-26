@@ -130,12 +130,12 @@ public class ConferenceImpl implements IConferenceDAO {
 
     @Override
     public void addConferenceEvents(List<Event> events, int idConf) throws SQLException {
-        Connection cn = null;
+        Connection conn = null;
         PreparedStatement pst = null;
 
         try {
-            cn = ConnectionManager.createConnection();
-            pst = cn.prepareStatement(SQLConstants.INSERT_EVENTS);
+            conn = ConnectionManager.createConnection();
+            pst = conn.prepareStatement(SQLConstants.INSERT_EVENTS);
             pst.setInt(1, idConf);
             for (Event event : events) {
                 pst.setString(2, event.getName());
@@ -152,12 +152,12 @@ public class ConferenceImpl implements IConferenceDAO {
 
     @Override
     public void removeConferences(String[] idConferences, User user) throws SQLException {
-        Connection cn = null;
+        Connection conn = null;
         PreparedStatement pst = null;
 
         try {
-            cn = ConnectionManager.createConnection();
-            pst = cn.prepareStatement(SQLConstants.DELETE_CONF);
+            conn = ConnectionManager.createConnection();
+            pst = conn.prepareStatement(SQLConstants.DELETE_CONF);
             pst.setInt(2, user.getId());
             for (String idConf : idConferences) {
                 pst.setInt(1, Integer.valueOf(idConf));
@@ -168,5 +168,21 @@ public class ConferenceImpl implements IConferenceDAO {
             ConnectionManager.closeConnection();
         }
 
+    }
+
+    @Override
+    public Conference getConference(int idConference) throws SQLException {
+        Conference conf = null;
+        Connection conn = null;
+        PreparedStatement pst = null;
+
+        try{
+            conn = ConnectionManager.createConnection();
+            pst = conn.prepareStatement(SQLConstants.SELECT_CONF);
+        }finally {
+            ConnectionManager.closeConnection();
+        }
+
+        return conf;
     }
 }

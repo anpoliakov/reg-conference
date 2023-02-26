@@ -14,4 +14,5 @@ public interface IConferenceDAO {
     int addConference(Conference conference, User user) throws SQLException;
     void addConferenceEvents(List<Event> events, int idConf) throws SQLException;
 	void removeConferences(String[] idConferences, User user) throws SQLException;
+	Conference getConference(int idConference) throws SQLException;
 }
