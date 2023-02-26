@@ -67,4 +67,15 @@ public class User {
     public void setSecondName(String secondName) {
         this.secondName = secondName;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", login='" + login + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", secondName='" + secondName + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
 }
