@@ -34,6 +34,7 @@ public class ConferenceImpl implements IConferenceDAO {
             if (sect == SectionKind.CONF_BY_USER) {
                 st.setInt(1, user.getId());
             }
+
             rs = st.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt(SQLConstants.ID_LABEL);
@@ -171,14 +172,29 @@ public class ConferenceImpl implements IConferenceDAO {
     }
 
     @Override
-    public Conference getConference(int idConference) throws SQLException {
+    public Conference getConference(int idConf) throws SQLException {
         Conference conf = null;
+
         Connection conn = null;
         PreparedStatement pst = null;
+        ResultSet rs = null;
 
         try{
             conn = ConnectionManager.createConnection();
-            pst = conn.prepareStatement(SQLConstants.SELECT_CONF);
+            pst = conn.prepareStatement(SQLConstants.SELECT_CONF_AND_EVENTS);
+            pst.setInt(1, idConf);
+            rs = pst.executeQuery();
+
+            if(rs.next()){
+                String title_conf = rs.getString(SQLConstants.TITLE_LABEL);
+                String descr_conf = rs.getString(SQLConstants.DESCR_LABEL);
+                String place_conf = rs.getString(SQLConstants.PLACE_LABEL);
+                Date date_conf = rs.getDate(SQLConstants.DATE_LABEL);
+
+                //TODO: доработать получение ВСЕХ событий в пределах одной конф
+                String name_event = rs.getString(SQLConstants.NAME_LABEL);
+                Time time_event = rs.getTime(SQLConstants.TIME_LABEL);
+            }
         }finally {
             ConnectionManager.closeConnection();
         }
@@ -186,3 +202,9 @@ public class ConferenceImpl implements IConferenceDAO {
         return conf;
     }
 }
+
+/**
+ *
+ * можно сделать передачу прав на конференцию - другому User
+ *
+ * */
