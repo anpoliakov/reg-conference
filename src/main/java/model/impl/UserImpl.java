@@ -79,7 +79,7 @@ public class UserImpl implements IUserDAO {
         return result;
     }
 
-    private boolean isFoundLogin(String login) throws SQLException {
+    public boolean isFoundLogin(String login) throws SQLException {
         Connection cn = null;
         PreparedStatement pst = null;
         ResultSet rs = null;
