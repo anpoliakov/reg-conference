@@ -17,20 +17,6 @@
     <!-- HEADER -->
     <jsp:include page="/headerAllPages.jsp"/>
 
-<%--    <h1> Conference </h1>--%>
-<%--    <form id="addConf" method="POST" action='<c:url value = "/addConf"/>'>--%>
-<%--        <input type="text" name="<%= Constants.TITLE%>" placeholder="Title"><br>--%>
-<%--        <input type="text" name="<%= Constants.DESCR %>" placeholder="Description"><br>--%>
-<%--        <input type="text" name="<%= Constants.PLACE %>" placeholder="Place"><br>--%>
-<%--        <input type="date" name="<%= Constants.DATE %>" placeholder="Date"><br>--%>
-
-<%--        <p>Events</p>--%>
-<%--        <div id="event">--%>
-<%--            <input type="text" name="<%= Constants.TITLE_EV%>" placeholder="Title" required>--%>
-<%--            <input type="time" name="<%= Constants.TIME_EV %>" placeholder="Time" required>--%>
-<%--        </div>--%>
-<%--    </form>--%>
-
     <div class="container">
         <form class="row g-3" id="addConf" method="POST" action='<c:url value = "/addConf"/>'>
             <h4 class="mb-3" id="distBetweenHeaderAndBody">Creating a new conference</h4>
