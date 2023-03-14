@@ -185,6 +185,8 @@ public class ConferenceImpl implements IConferenceDAO {
             pst.setInt(1, idConf);
             rs = pst.executeQuery();
 
+            System.out.println(rs.getMetaData().getColumnCount());
+
             if(rs.next()){
                 String title_conf = rs.getString(SQLConstants.TITLE_LABEL);
                 String descr_conf = rs.getString(SQLConstants.DESCR_LABEL);

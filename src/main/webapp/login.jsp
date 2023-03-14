@@ -19,7 +19,7 @@
 </head>
 <body class="text-center">
     <main class="form-signin">
-        <form action='<c:url value="/login"/>'>
+        <form action='<c:url value="/login"/>' method="POST">
             <img class="mb-4" src="img/logo.svg" alt="" width="60" height="60">
             <h3 class="h3 mb-3 fw-normal">Please,enter your login and password</h3>
 
